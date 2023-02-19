@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import Button from '@material-ui/core/Button';
-import CustomizedSteppers from './components/shared/Stepper';
+import Button from "@material-ui/core/Button";
 
 function App() {
   return (
     <div className="App">
       <h1>Hello World</h1>
-      <Button variant="contained" color="secondary">Button</Button>
-      {/* <CustomizedSteppers/> */}
+      <Button variant="contained" color="secondary">
+        Button
+      </Button>
     </div>
   );
 }
