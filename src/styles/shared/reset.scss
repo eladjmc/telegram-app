@@ -31,3 +31,14 @@ a {
 li{
     list-style: none;
 }
+
+// Vars
+:root{
+  // --MainColor: rgb(73, 3, 72);
+  --MainColor: #674188;
+  --MainColorLight: #674188e4;
+  --MainColorDark: #4f3368;
+
+  --LightColor: #F7EFE5;
+  --LightestColor: #FFFBF5;
+}

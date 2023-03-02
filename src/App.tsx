@@ -1,14 +1,17 @@
-import React from "react";
-
-import Button from "@material-ui/core/Button";
+import React, { FormEvent } from "react";
+import Login from "./components/login/Login";
+import Navbar from "./components/navbar/Navbar";
+import UserForm from "./components/shared/ui-components/UserForm";
 
 function App() {
+  const onSubmitForm = (e: FormEvent<HTMLInputElement>) => {
+    console.log("submitted");
+  };
+
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      <Button variant="contained" color="secondary">
-        Button
-      </Button>
+      <Navbar/>
+      <Login />
     </div>
   );
 }

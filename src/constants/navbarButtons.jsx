@@ -1,0 +1,1 @@
+export const navbarButtons = ['Phones', 'Groups','Activate', 'Logout'];
