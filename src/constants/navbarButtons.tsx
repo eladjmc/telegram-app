@@ -1,1 +1,6 @@
-export const navbarButtons = ['Phones', 'Groups','Activate', 'Logout'];
+export enum NavbarButtons {
+    PHONES = 'Phones',
+    GROUPS = 'Groups',
+    ACTIVATE = 'Activate',
+    LOGOUT = 'Logout',
+}

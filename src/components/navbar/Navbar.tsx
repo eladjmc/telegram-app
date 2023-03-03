@@ -4,9 +4,9 @@ import { Outlet } from "react-router";
 import "../../styles/Navbar.scss";
 import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
-import { navbarButtons } from "../../constants/navbarButtons";
+import { NavbarButtons } from "../../constants/navbarButtons";
 
-const [phones, groups, activate, logout] = navbarButtons;
+
 
 const Navbar = () => {
   const [currentPage, setCurrentPage] = useState<string>("Phones");
@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleNavLinkPressed = (buttonName: string) => {
-    if (buttonName !== logout) {
+    if (buttonName !== NavbarButtons.LOGOUT) {
       setCurrentPage(buttonName);
       navigate(`/${buttonName.toLowerCase()}`);
     } else {
@@ -29,21 +29,21 @@ const Navbar = () => {
         <div className="navigate-links">
           <div className="phones">
             <NavButton
-              buttonText={phones}
+              buttonText={NavbarButtons.PHONES}
               action={handleNavLinkPressed}
               currentPage={currentPage}
             />
           </div>
           <div className="groups">
             <NavButton
-              buttonText={groups}
+              buttonText={NavbarButtons.GROUPS}
               action={handleNavLinkPressed}
               currentPage={currentPage}
             />
           </div>
           <div className="activate">
             <NavButton
-              buttonText={activate}
+              buttonText={NavbarButtons.ACTIVATE}
               action={handleNavLinkPressed}
               currentPage={currentPage}
             />
@@ -51,7 +51,7 @@ const Navbar = () => {
         </div>
         <div className="logout">
           <NavButton
-            buttonText={logout}
+            buttonText={NavbarButtons.LOGOUT}
             action={handleNavLinkPressed}
             currentPage={currentPage}
           />
