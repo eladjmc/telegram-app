@@ -1,19 +1,23 @@
-import React, { FormEvent } from "react";
-import Login from "./components/login/Login";
 import Navbar from "./components/navbar/Navbar";
-import UserForm from "./components/shared/ui-components/UserForm";
+import PhonesPage from './pages/PhonesPage'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
-  const onSubmitForm = (e: FormEvent<HTMLInputElement>) => {
-    console.log("submitted");
-  };
-
-  return (
-    <div className="App">
-      <Navbar/>
-      <Login />
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Navbar />,
+      children: [
+        { path: "/phones", element: <PhonesPage/>} ,
+        
+        { path: "/*", element: <LoginPage /> }, // need to make no such page category
+      ],
+      
+    },
+    { path: "/login", element: <LoginPage /> },
+  ]);
+  return <RouterProvider router={router} />
 }
 
 export default App;
