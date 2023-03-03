@@ -1,0 +1,39 @@
+.form {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    padding-bottom: 35px;
+    width: 320px;
+    border-top: 25px var(--MainColor) solid;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 100%;
+  }
+
+.submit {
+    background-color: var(--MainColor);
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+    text-align: center;
+    width: 100%;
+  }
+  .submit:hover {
+    background-color: var(--MainColorLight);
+
+  }
+  
+  .submit:active {
+    background-color: var(--MainColorDark);
+  }
+
+  .title {
+    text-align: center;
+    color: var(--MainColor);
+    font-size: 3rem;
+  }
