@@ -2,6 +2,7 @@ import React, { useState,FormEvent } from "react";
 
 import { ReactNode } from "react";
 import "./UserForm.scss";
+import { useNavigate } from "react-router-dom";
 
 interface userFormProps {
   fields: string[];
@@ -14,9 +15,11 @@ const UserForm = ({ fields, submitForm ,children }: userFormProps) => {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("form submitted");
+    navigate("/phones");
   };
 
   return (

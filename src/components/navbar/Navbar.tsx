@@ -1,86 +1,64 @@
 import React from "react";
 import { useState } from "react";
+import { Outlet } from "react-router";
 import "../../styles/Navbar.scss";
 import NavButton from "./NavButton";
+import { useNavigate } from "react-router-dom";
 import { navbarButtons } from "../../constants/navbarButtons";
 
 const [phones, groups, activate, logout] = navbarButtons;
 
-interface ButtonsSelected {
-  phones: boolean;
-  groups: boolean;
-  activate: boolean;
-}
-
 const Navbar = () => {
-  const [isSelected, setIsSelected] = useState<ButtonsSelected>({
-    phones: true,
-    groups: false,
-    activate: false,
-  });
-  const handleNavLinkPressed = (buttonName: string) => {
-    // this will not be a switch case at the end, just for now it is
-    switch (buttonName) {
-      case phones: {
-        //TODO: handle navigate and other logic
-        console.log(phones, "Pressed link");
+  const [currentPage, setCurrentPage] = useState<string>("Phones");
 
-        break;
-      }
-      case groups: {
-        //TODO: handle navigate and other logic
-        console.log(groups, "Pressed link");
-        break;
-      }
-      case activate: {
-        //TODO: handle navigate and other logic
-        console.log(activate, "Pressed link");
-        break;
-      }
-      case logout: {
-        //TODO: handle navigate and other logic
-        console.log(logout, "Pressed link");
-        break;
-      }
-      default:
-        break;
+  const navigate = useNavigate();
+
+  const handleNavLinkPressed = (buttonName: string) => {
+    if (buttonName !== logout) {
+      setCurrentPage(buttonName);
+      navigate(`/${buttonName.toLowerCase()}`);
+    } else {
+      navigate("/login");
     }
   };
 
   return (
-    <header className="navbar">
-      <div className="logo"></div>
-      <div className="navigate-links">
-        <div className="phones">
+    <div className="App">
+      <header className="navbar">
+        <div className="logo"></div>
+        <div className="navigate-links">
+          <div className="phones">
+            <NavButton
+              buttonText={phones}
+              action={handleNavLinkPressed}
+              currentPage={currentPage}
+            />
+          </div>
+          <div className="groups">
+            <NavButton
+              buttonText={groups}
+              action={handleNavLinkPressed}
+              currentPage={currentPage}
+            />
+          </div>
+          <div className="activate">
+            <NavButton
+              buttonText={activate}
+              action={handleNavLinkPressed}
+              currentPage={currentPage}
+            />
+          </div>
+        </div>
+        <div className="logout">
           <NavButton
-            buttonText={phones}
-            isSelected={isSelected.phones}
+            buttonText={logout}
             action={handleNavLinkPressed}
+            currentPage={currentPage}
           />
         </div>
-        <div className="groups">
-          <NavButton
-            buttonText={groups}
-            isSelected={isSelected.groups}
-            action={handleNavLinkPressed}
-          />
-        </div>
-        <div className="activate">
-          <NavButton
-            buttonText={activate}
-            isSelected={isSelected.activate}
-            action={handleNavLinkPressed}
-          />
-        </div>
-      </div>
-      <div className="logout">
-        <NavButton
-          buttonText={logout}
-          isSelected={false}
-          action={handleNavLinkPressed}
-        />
-      </div>
-    </header>
+      </header>
+      <Outlet />
+    </div>
   );
 };
 
