@@ -6,8 +6,6 @@ import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 import { NavbarButtons } from "../../constants/navbarButtons";
 
-
-
 const Navbar = () => {
   const [currentPage, setCurrentPage] = useState<string>("Phones");
 
@@ -25,7 +23,8 @@ const Navbar = () => {
   return (
     <div className="App">
       <header className="navbar">
-        <div className="logo"></div>
+        {/* <div className="logo"></div> */}
+        <img src="./assets/images/navbarlogo2.png" height="90%" alt="" />
         <div className="navigate-links">
           <div className="phones">
             <NavButton
