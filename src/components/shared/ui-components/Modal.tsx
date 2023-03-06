@@ -14,6 +14,7 @@ interface ModalProps {
   title: string;
   message: string;
 }
+
 const Modal = ({
   isOpen,
   handleClose,
@@ -21,6 +22,7 @@ const Modal = ({
   title,
   message,
 }: ModalProps) => {
+
   const [visibilityClass, setVisibilityClass] = useState("");
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const Modal = ({
       return;
     }
     setVisibilityClass("opacity-one");
+
   }, [isOpen]);
 
   return (

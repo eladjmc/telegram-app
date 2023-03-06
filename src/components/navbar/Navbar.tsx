@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Outlet } from "react-router";
-import "../../styles/Navbar.scss";
+import "./Navbar.scss";
 import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 import { NavbarButtons } from "../../constants/navbarButtons";

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Login from "../components/login/Login";
 import Modal from "../components/shared/ui-components/Modal";
+import './LoginPage.scss'
 const LoginPage = () => {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -15,7 +16,7 @@ const LoginPage = () => {
           buttons={[{ buttonText: "Close", handleClick: handleCloseModal }]}
           isOpen={isOpen}
           handleClose={handleCloseModal}
-          title="Modal"
+          title="Error"
           message="blabla asdsadasd safsagasg safasfasf bla bla bla"
         />
       )}
