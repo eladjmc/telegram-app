@@ -9,6 +9,7 @@ import API from "../services/api";
 const columns: Column[] = [
   { field: "number", title: "Phone Number" },
   { field: "is_banned", title: "Banned" },
+  { field: "is_connected", title: "Connected" },
 ];
 interface PhoneData {
   number: string;
@@ -37,7 +38,12 @@ const Phones = () => {
     try {
       await API.post(`/phones/${newRow.number}`, null);
       await getPhones();
-    } catch (error) {}
+    } catch (error: any) {
+      if (error?.code === 'ERR_BAD_REQUEST') {
+        const errorMessage = error.response.data;
+        // display error message
+      }
+    }
   };
 
   useEffect(() => {
