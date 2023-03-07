@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Table, {
   Column,
   GenericData,
 } from "../components/shared/ui-components/Table";
 import "./PhonesPage.scss";
 import API from "../services/api";
+import Modal, { ModalButton } from "../components/shared/ui-components/Modal";
+import SingleFrom from "../components/shared/ui-components/SingleFrom";
+import Input, { InputProps } from "../components/shared/ui-components/Input";
 
 const columns: Column[] = [
   { field: "number", title: "Phone Number" },
   { field: "is_banned", title: "Banned" },
   { field: "is_connected", title: "Connected" },
 ];
+
 interface PhoneData {
   number: string;
   is_banned: boolean;
@@ -18,7 +22,55 @@ interface PhoneData {
 
 const Phones = () => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState("");
+  const [tokenInput, setTokenInput] = useState("");
+  const [modalError, setModalError] = useState("");
 
+  const modalButtons: ModalButton[] = [
+    {
+      buttonText: "Submit",
+      handleClick: async () => {
+        try {
+          const result = await API.post(
+            `/phones/${isModalOpen}/${tokenInput}`,
+            null
+          );
+          if (result.status === 200) {
+            setIsModalOpen("");
+            setTokenInput("");
+            setModalError("");
+            getPhones();
+          }
+        } catch (error) {
+          setModalError("Token Invalid, try again");
+        }
+      },
+    },
+    {
+      buttonText: "Cancel",
+      handleClick: () => {
+        setIsModalOpen("");
+        setTokenInput("");
+        setModalError("");
+      },
+    },
+  ];
+
+  const onTokenInputChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    label: string
+  ) => {
+    setTokenInput(e.target.value);
+    setModalError("");
+  };
+
+  const modalInput: InputProps = {
+    label: "Token",
+    onChange: onTokenInputChange,
+    type: "text",
+    value: tokenInput,
+    placeholder: " ",
+  };
 
   const getPhones = async () => {
     try {
@@ -36,10 +88,10 @@ const Phones = () => {
 
   const onRowAdd = async (newRow: GenericData) => {
     try {
-      await API.post(`/phones/${newRow.number}`, null);
-      await getPhones();
+      const result = await API.post(`/phones/${newRow.number}`, null);
+      setIsModalOpen(newRow.number as string);
     } catch (error: any) {
-      if (error?.code === 'ERR_BAD_REQUEST') {
+      if (error?.code === "ERR_BAD_REQUEST") {
         const errorMessage = error.response.data;
         // display error message
       }
@@ -52,13 +104,20 @@ const Phones = () => {
     const abortController = new AbortController();
 
     getPhones();
-    return ()=>{
-      abortController.abort(); 
-    }
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   return (
     <section className="PhonePage">
+      <Modal
+        buttons={modalButtons}
+        isOpen={!!isModalOpen}
+        message={<Input {...modalInput} />}
+        error={modalError}
+        title={"Please Insert Your Token"}
+      />
       <h1>Phones Connected</h1>
       <div className="table-container">
         <Table

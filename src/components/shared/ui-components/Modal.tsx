@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { error } from "console";
+import React, { ReactNode, useEffect, useState } from "react";
 import "./Modal.scss";
 
-interface ModalButton {
+export interface ModalButton {
   buttonText: string;
   btnClass?: string;
   handleClick: () => void;
@@ -9,10 +10,11 @@ interface ModalButton {
 
 interface ModalProps {
   isOpen: boolean;
-  handleClose: () => void;
+  handleClose?: () => void;
   buttons: ModalButton[];
   title: string;
-  message: string;
+  message: string | ReactNode;
+  error?: string;
 }
 
 const Modal = ({
@@ -21,8 +23,8 @@ const Modal = ({
   buttons,
   title,
   message,
+  error,
 }: ModalProps) => {
-
   const [visibilityClass, setVisibilityClass] = useState("");
 
   useEffect(() => {
@@ -30,29 +32,33 @@ const Modal = ({
       return;
     }
     setVisibilityClass("opacity-one");
-
   }, [isOpen]);
 
   return (
     <>
-      <div onClick={handleClose} className="background-cover"></div>
-      <div className={`modal-container ${visibilityClass}`}>
-        <h3 className="modal-title">{title}</h3>
-        <p className="modal-message">{message}</p>
-        <div className="modal-buttons-container">
-          {buttons.map((button) => {
-            return (
-              <button
-                key={button.buttonText}
-                onClick={button.handleClick}
-                className={button.btnClass || "default-btn"}
-              >
-                {button.buttonText}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      {isOpen && (
+        <>
+          <div onClick={handleClose} className="background-cover"></div>
+          <div className={`modal-container ${visibilityClass}`}>
+            <h3 className="modal-title">{title}</h3>
+            {error && <p>{error}</p>}
+            <div className="modal-message">{message}</div>
+            <div className="modal-buttons-container">
+              {buttons.map((button) => {
+                return (
+                  <button
+                    key={button.buttonText}
+                    onClick={button.handleClick}
+                    className={button.btnClass || "default-btn"}
+                  >
+                    {button.buttonText}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

@@ -11,6 +11,7 @@ export interface GenericData {
 export interface Column {
   title: string;
   field: string;
+
 }
 
 interface TableProps {
@@ -20,6 +21,7 @@ interface TableProps {
   onRowAdd: (newRow: GenericData) => Promise<void>;
   onRowUpdate?: (newData: GenericData, oldData: any) => Promise<void>;
   onRowDelete: (selectedRow: any) => Promise<void>;
+  
 }
 
 const Table = ({
