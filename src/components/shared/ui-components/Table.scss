@@ -1,6 +1,29 @@
 .table-container {
+  font-size: 120%;
+}
+.table-container input {
+  font-size: 1.4rem;
+}
+.table-container .MuiTableCell-root div {
+  justify-content: center;
+  align-items: center;
+}
+.table-container .MuiTableCell-root {
+  padding: 0.8rem;
+}
+.table-container .MuiSvgIcon-fontSizeMedium {
+  font-size: 140%;
+}
+.table-container .MuiToolbar-root h6 {
+  font-size: 2rem;
+  color: var(--MainColor);
+  font-weight: 600;
+}
+
+.table-container {
   width: 100%;
 }
+
 .table-container .Component-paginationToolbar-2,
 .table-container .MuiToolbar-root {
   width: auto;
@@ -14,4 +37,11 @@
 
 .table-container .MuiPaper-elevation {
   background-color: rgb(255, 255, 255);
+}
+
+@media screen and (max-width: 600px) {
+
+  .table-container .MuiToolbar-root h6 {
+display: none;
+  }
 }

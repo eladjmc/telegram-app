@@ -11,7 +11,7 @@ const LoginPage = () => {
 
   return (
     <section className="LoginPage">
-      {isOpen && (
+      {/* {isOpen && (
         <Modal
           buttons={[{ buttonText: "Close", handleClick: handleCloseModal }]}
           isOpen={isOpen}
@@ -19,7 +19,7 @@ const LoginPage = () => {
           title="Error"
           message="blabla asdsadasd safsagasg safasfasf bla bla bla"
         />
-      )}
+      )} */}
       <Login />
     </section>
   );

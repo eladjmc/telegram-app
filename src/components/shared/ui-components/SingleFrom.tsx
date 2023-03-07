@@ -28,7 +28,13 @@ const SingleFrom = ({
   children,
 }: Props) => {
   return (
-    <form className="form" onSubmit={onSubmit}>
+    <form
+      className="form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit();
+      }}
+    >
       <h1 className="title">{title}</h1>
       {inputs.map((input: InputProps) => {
         return (
@@ -42,7 +48,9 @@ const SingleFrom = ({
           />
         );
       })}
-      <button className="submit" type="submit">{submitText || "Submit"}</button>
+      <button className="submit" type="submit">
+        {submitText || "Submit"}
+      </button>
     </form>
   );
 };

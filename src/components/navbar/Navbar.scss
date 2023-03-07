@@ -41,3 +41,12 @@
     color: var(--MainColor);
   }
 }
+
+@media screen and (max-width: 700px) {
+  .navbar{
+
+    .nav-btn {
+      display: none;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 interface LoginProviderProps {
   children: React.ReactNode;
@@ -20,17 +20,14 @@ const LoginContext = createContext<ContextProps>({
 const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
 
-  const navigate = useNavigate();
 
   const HandleLogout = () => {
     setIsLogged(false);
     //TODO: Clear token
-    navigate("/login");
   };
 
   const HandleLogin = () => {
     setIsLogged(true);
-    navigate("/phones");
   };
 
   return (

@@ -2,7 +2,7 @@ import axios from "axios";
 
 class Api {
   axios = axios.create({
-    baseURL: "https://localhost:3001",
+    baseURL: "http://localhost:5001/",
   });
 
   async get<T = any>(url: string) {

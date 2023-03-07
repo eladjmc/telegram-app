@@ -1,17 +1,16 @@
 import "./Table.scss";
 
-import MaterialTable from "material-table";
+import MaterialTable from "@material-table/core";
+import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import React, { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material";
 
-
-
 export interface GenericData {
-  [key: string]: string | number | boolean ;
+  [key: string]: string | number | boolean;
 }
 export interface Column {
   title: string;
-  field:string;
+  field: string;
 }
 
 interface TableProps {
@@ -23,9 +22,14 @@ interface TableProps {
   onRowDelete: (selectedRow: any) => Promise<void>;
 }
 
-const Table = ({columns,data,title,onRowAdd,onRowUpdate,onRowDelete}:TableProps) => {
-
-
+const Table = ({
+  columns,
+  data,
+  title,
+  onRowAdd,
+  onRowUpdate,
+  onRowDelete,
+}: TableProps) => {
   const defaultMaterialTheme = createTheme({});
 
   return (
@@ -42,20 +46,32 @@ const Table = ({columns,data,title,onRowAdd,onRowUpdate,onRowDelete}:TableProps)
             headerStyle: {
               backgroundColor: "#C3ACD0",
               color: "#fffff",
+              fontSize: "1.6rem",
               fontWeight: 500,
             },
 
             pageSize: 5, // make initial page size
             emptyRowsWhenPaging: true, // To avoid of having empty rows
-            pageSizeOptions: [5,10,20,50], // rows selection options
+            pageSizeOptions: [5, 10, 20, 50], // rows selection options
             paginationType: "stepped",
             // paginationPosition: "top",
             showFirstLastPageButtons: true,
-            exportButton: true,
+            exportMenu: [
+              {
+                label: "Export PDF",
+                exportFunc: (cols, datas) =>
+                  ExportPdf(cols, datas, title),
+              },
+              {
+                label: "Export CSV",
+                exportFunc: (cols, datas) =>
+                  ExportCsv(cols, datas, title),
+              },
+            ],
             addRowPosition: "first",
             actionsColumnIndex: -1,
             rowStyle: (data, index) =>
-              !(index % 2) ? { background: "#FFFBF5" } : {},
+              !(index % 2) ? {} : { background: "#F7EFE5" },
           }}
           title={title}
           columns={columns}
