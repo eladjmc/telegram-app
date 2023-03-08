@@ -23,14 +23,13 @@ const Login = ({ setIsOpen, setErrorMessage }: LoginProps) => {
     setForm({ ...form, [label.toLowerCase()]: e.target.value });
   };
 
-  // const onSubmitForm = () => {
-  //   console.log("submitted");
-  //   HandleLogin(); // use this only when confirmed details
-  //   navigate(`/phones`);
-  // };
+// // // // // // // // //
+//    admin@lol.com     //
+//       1234          //
+// // // // // // // //
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    if(!e) return;
+    if (!e) return;
     e.preventDefault();
 
     const { email, password } = form;
@@ -103,7 +102,14 @@ const Login = ({ setIsOpen, setErrorMessage }: LoginProps) => {
       onChange,
     },
   ];
-  return <SingleFrom inputs={inputs} title={"Login"} onSubmit={onSubmitForm} submitText={isLoading? 'Loading...': 'Submit'}/>;
+  return (
+    <SingleFrom
+      inputs={inputs}
+      title={"Login"}
+      onSubmit={onSubmitForm}
+      submitText={isLoading ? "Loading..." : "Submit"}
+    />
+  );
 };
 
 export default Login;
