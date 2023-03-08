@@ -15,7 +15,7 @@ interface Props {
   button?: FooterButton;
   title: string;
   submitText?: string;
-  onSubmit: () => void;
+  onSubmit:  (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   children?: ReactNode;
 }
 
@@ -32,7 +32,7 @@ const SingleFrom = ({
       className="form"
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit();
+        onSubmit(e);
       }}
     >
       <h1 className="title">{title}</h1>

@@ -16,6 +16,7 @@ function App() {
         { path: "/phones", element: <PhonesPage /> },
         { path: "/groups", element: <GroupsPage /> },
         { path: "/activate", element: <ActivatePage /> },
+        { path: "/welcome", element: <WelcomePage /> },
       ],
     },
     { path: "/login", element: <LoginPage /> },

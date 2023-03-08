@@ -41,7 +41,7 @@ const Modal = ({
           <div onClick={handleClose} className="background-cover"></div>
           <div className={`modal-container ${visibilityClass}`}>
             <h3 className="modal-title">{title}</h3>
-            {error && <p>{error}</p>}
+            {error && <p className="modal-error-message">{error}</p>}
             <div className="modal-message">{message}</div>
             <div className="modal-buttons-container">
               {buttons.map((button) => {
