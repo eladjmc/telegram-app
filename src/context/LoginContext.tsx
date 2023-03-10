@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 
 interface LoginProviderProps {
@@ -9,26 +9,48 @@ interface ContextProps {
   isLogged: boolean;
   HandleLogout: () => void;
   HandleLogin: () => void;
+  setNewPage:(page:string)=>void,
+  currentPage:string,
 }
 
 const LoginContext = createContext<ContextProps>({
   isLogged: false,
   HandleLogout: () => {},
   HandleLogin: () => {},
+  setNewPage:(page:string)=>{},
+  currentPage:'login',
 });
 
 const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
-  const [isLogged, setIsLogged] = useState<boolean>(false);
+  const [isLogged, setIsLogged] = useState<boolean>(() => {
+    // Load isLogged from local storage on initialization
+    const storedValue = localStorage.getItem("isLogged");
+    return storedValue ? JSON.parse(storedValue) : false;
+  });
+  const [currentPage, setCurrentPage] = useState<string>("login");
+
+
+
+  useEffect(() => {
+    // Save isLogged to local storage whenever it changes
+    localStorage.setItem("isLogged", JSON.stringify(isLogged));
+  }, [isLogged]);
 
 
   const HandleLogout = () => {
     setIsLogged(false);
+    setCurrentPage('login')
     //TODO: Clear token
   };
 
   const HandleLogin = () => {
     setIsLogged(true);
+    setCurrentPage('welcome')
   };
+
+  const setNewPage = (page:string) =>{
+    setCurrentPage(page)
+  }
 
   return (
     <LoginContext.Provider
@@ -36,6 +58,8 @@ const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
         isLogged,
         HandleLogout,
         HandleLogin,
+        setNewPage,
+        currentPage,
       }}
     >
       {children}

@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Login from "../components/login/Login";
 import Modal from "../components/shared/ui-components/Modal";
+import { useGlobalContext } from "../context/LoginContext";
 import './LoginPage.scss'
 const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const { setNewPage } = useGlobalContext();
+
+  useEffect(() => {
+    setNewPage("Login");
+  });
+
 
   const handleCloseModal = () => {
     setErrorMessage('');

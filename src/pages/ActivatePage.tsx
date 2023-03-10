@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useGlobalContext } from "../context/LoginContext";
 import "./ActivatePage.scss";
 
 const ActivatePage = () => {
+  const { setNewPage } = useGlobalContext();
+
+  useEffect(() => {
+    setNewPage("Activate");
+  });
+
   return (
     <section className="ActivatePage">
       <div className="snake">indicator-snake</div>

@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import GroupsPage from "./pages/GroupsPage";
 import ActivatePage from "./pages/ActivatePage";
 import WelcomePage from "./pages/WelcomePage";
+import { useGlobalContext } from "./context/LoginContext";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,7 +21,7 @@ function App() {
       ],
     },
     { path: "/login", element: <LoginPage /> },
-    { path: "*", element: <WelcomePage /> }, // need to make Error page
+    // { path: "*", element: <WelcomePage /> }, // need to make Error page
   ]);
   return <RouterProvider router={router} />;
 }

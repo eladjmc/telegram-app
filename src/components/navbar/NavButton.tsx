@@ -1,23 +1,23 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useGlobalContext } from "../../context/LoginContext";
 interface buttonProps {
   buttonText: string;
-  currentPage: string;
   action: (buttonName: string) => void;
 }
 
-const NavButton = ({ buttonText, action, currentPage }: buttonProps) => {
-  const location = useLocation();
+const NavButton = ({ buttonText, action}: buttonProps) => {
+  const [isCurrentPage, setIsCurrentPage] = useState(false)
+  const {currentPage} = useGlobalContext()
 
-  const isSelected = () => {
+  useEffect(() => {
+    setIsCurrentPage(currentPage===buttonText)
 
-    return currentPage === buttonText;
-  };
+  }, [currentPage,buttonText])
+  
   return (
     <div
-      className={`nav-btn ${isSelected() ? "nav-btn-selected" : ""}`}
+      className={`nav-btn ${isCurrentPage ? "nav-btn-selected" : ""}`}
       onClick={() => {
         action(buttonText);
       }}

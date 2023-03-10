@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
 import { Outlet } from "react-router";
 import "./Navbar.scss";
 import NavButton from "./NavButton";
@@ -9,21 +8,21 @@ import { useGlobalContext } from "../../context/LoginContext";
 import BurgerMenu from "./BurgerMenu";
 
 const Navbar = () => {
-  const [currentPage, setCurrentPage] = useState<string>("phones");
-
-  const { isLogged, HandleLogout } = useGlobalContext();
+  const { isLogged, HandleLogout, currentPage, setNewPage } =
+    useGlobalContext();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLogged) {
+      console.log('im not logged');
       navigate("/login");
     }
   });
 
   const handleNavLinkPressed = (buttonName: string) => {
     if (buttonName !== NavbarButtons.LOGOUT) {
-      setCurrentPage(buttonName);
+      setNewPage(buttonName);
       navigate(`/${buttonName.toLowerCase()}`);
     } else {
       HandleLogout();
@@ -40,30 +39,30 @@ const Navbar = () => {
             <NavButton
               buttonText={NavbarButtons.PHONES}
               action={handleNavLinkPressed}
-              currentPage={currentPage}
             />
           </div>
           <div className="groups">
             <NavButton
               buttonText={NavbarButtons.GROUPS}
               action={handleNavLinkPressed}
-              currentPage={currentPage}
             />
           </div>
           <div className="activate">
             <NavButton
               buttonText={NavbarButtons.ACTIVATE}
               action={handleNavLinkPressed}
-              currentPage={currentPage}
             />
           </div>
         </div>
         <div className="logout">
-          <BurgerMenu/>
+          <BurgerMenu
+            setCurrentPage={setNewPage}
+            navigate={navigate}
+            currentPage={currentPage}
+          />
           <NavButton
             buttonText={NavbarButtons.LOGOUT}
             action={handleNavLinkPressed}
-            currentPage={currentPage}
           />
         </div>
       </header>
