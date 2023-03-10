@@ -21,9 +21,14 @@ interface PhoneData {
   is_banned: boolean;
 }
 
+interface ModalData {
+  phoneNumber: string;
+  hashCode: string;
+}
+
 const Phones = () => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState<ModalData | null>(null);
   const [tokenInput, setTokenInput] = useState("");
   const [modalError, setModalError] = useState("");
 
@@ -37,13 +42,16 @@ const Phones = () => {
     {
       buttonText: "Submit",
       handleClick: async () => {
+        if (!isModalOpen) {
+          return;
+        }
         try {
           const result = await API.post(
-            `/phones/${isModalOpen}/${tokenInput}`,
+            `/phones/${isModalOpen.phoneNumber}/${isModalOpen.hashCode}/${tokenInput}`,
             null
           );
           if (result.status === 200) {
-            setIsModalOpen("");
+            setIsModalOpen(null);
             setTokenInput("");
             setModalError("");
             getPhones();
@@ -56,7 +64,7 @@ const Phones = () => {
     {
       buttonText: "Cancel",
       handleClick: () => {
-        setIsModalOpen("");
+        setIsModalOpen(null);
         setTokenInput("");
         setModalError("");
       },
@@ -96,7 +104,14 @@ const Phones = () => {
   const onRowAdd = async (newRow: GenericData) => {
     try {
       const result = await API.post(`/phones/${newRow.number}`, null);
-      setIsModalOpen(newRow.number as string);
+      if (!result.data.phone_code_hash || result.data.error) {
+        //TODO: display error message
+        return;
+      }
+      setIsModalOpen({
+        phoneNumber: newRow.number as string,
+        hashCode: result.data.phone_code_hash,
+      });
     } catch (error: any) {
       if (error?.code === "ERR_BAD_REQUEST") {
         const errorMessage = error.response.data;
