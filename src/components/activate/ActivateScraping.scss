@@ -159,3 +159,69 @@
     }
   }
   
+
+
+  .noselect {
+    margin: 0 auto;
+    width: 150px;
+    height: 50px;
+    font-size: 2.2rem;
+    text-align: center;
+    transform: scale(.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #e62222;
+   }
+   
+   .noselect, .noselect span {
+    transition: 200ms;
+   }
+   
+   button .text-end-btn {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+   }
+   
+   button .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   
+   button svg {
+    width: 15px;
+    fill: #eee;
+   }
+   
+   .noselect:hover {
+    background: #ff3636;
+   }
+   
+   button:hover .text-end-btn {
+    color: transparent;
+   }
+   
+   button:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+   }
+   
+   button:focus {
+    outline: none;
+   }
+   
+   button:active .icon svg {
+    transform: scale(0.8);
+   }
