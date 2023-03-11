@@ -6,10 +6,12 @@ export interface InputProps {
   type: string;
   placeholder?: string;
   label: string;
+  min?:number;
+  max?:number;
   onChange: (e: ChangeEvent<HTMLInputElement>, label: string) => void;
 }
 
-const Input = ({ value, type, placeholder, label, onChange }: InputProps) => {
+const Input = ({ value, type, placeholder, label,min,max, onChange }: InputProps) => {
   return (
     <div className="input-container ic1">
       <input
@@ -18,10 +20,11 @@ const Input = ({ value, type, placeholder, label, onChange }: InputProps) => {
         id={label}
         placeholder={placeholder}
         value={value}
+        min={min}
         onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, label)}
       />
       <div className="cut"></div>
-      <label className="placeholder">{label}:</label>
+      <label className="placeholder">{label}</label>
     </div>
   );
 };

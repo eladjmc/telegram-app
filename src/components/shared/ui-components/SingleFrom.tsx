@@ -45,6 +45,7 @@ const SingleFrom = ({
             value={input.value}
             onChange={input.onChange}
             type={input.type}
+            min={input.min}
           />
         );
       })}
