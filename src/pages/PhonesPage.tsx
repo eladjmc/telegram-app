@@ -6,7 +6,6 @@ import Table, {
 import "./PhonesPage.scss";
 import API from "../services/api";
 import Modal, { ModalButton } from "../components/shared/ui-components/Modal";
-import SingleFrom from "../components/shared/ui-components/SingleFrom";
 import Input, { InputProps } from "../components/shared/ui-components/Input";
 import {Pages, useGlobalContext} from "../context/LoginContext";
 
@@ -112,6 +111,7 @@ const Phones = () => {
         phoneNumber: newRow.number as string,
         hashCode: result.data.phone_code_hash,
       });
+      getPhones();
     } catch (error: any) {
       if (error?.code === "ERR_BAD_REQUEST") {
         const errorMessage = error.response.data;
