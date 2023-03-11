@@ -1,0 +1,160 @@
+.button-82-pushable {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-82-pushable-disabled {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  // outline-offset: 4px;
+  // transition: filter 250ms;
+  // user-select: none;
+  // -webkit-user-select: none;
+  // touch-action: manipulation;
+}
+
+.button-82-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.button-82-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(
+                  to left,
+                  #39254b,
+                  #5b3a78,
+                  #4f3369,
+                  #442c5a,
+                  #39254b
+  );
+}
+
+.button-82-front {
+  display: block;
+  position: relative;
+  padding: 12px 27px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: white;
+  background: var(--MainColor);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  font-size: 1.6rem;
+  padding: 12px 42px;
+}
+.button-82-front-disabled {
+  cursor: default;
+  width: 213.25px;
+  display: block;
+  position: relative;
+  padding: 12px 27px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: white;
+  background: var(--MainColor);
+  will-change: transform;
+  transform: translateY(-4px);
+  // transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  font-size: 1.6rem;
+  padding: 12px 42px;
+}
+
+// @media (min-width: 768px) {
+//   .button-82-front {
+//     font-size: 1.25rem;
+//     padding: 12px 42px;
+//   }
+// }
+
+.button-82-pushable:hover {
+  filter: brightness(110%);
+  -webkit-filter: brightness(110%);
+}
+
+.button-82-pushable:hover .button-82-front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.button-82-pushable:active .button-82-front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.button-82-pushable:hover .button-82-shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.button-82-pushable:active .button-82-shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.button-82-pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// spinner
+
+
+.lds-hourglass {
+  display: inline-block;
+  position: absolute;
+  z-index: 300;
+  right: 27px;
+  top: -2px;
+  width: 10px;
+  height: 10px;
+  transform: scale(.4);
+}
+.lds-hourglass:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-hourglass 1.7s infinite;
+}
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
+}

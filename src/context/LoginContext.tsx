@@ -1,5 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
+export enum Pages {
+  LOGIN = "login",
+  WELCOME = "welcome",
+  ACTIVATE = "activate",
+  GROUPS = "groups",
+  PHONES = "phones",
+  LOGOUT = "logout",
+}
 
 interface LoginProviderProps {
   children: React.ReactNode;
@@ -7,18 +15,18 @@ interface LoginProviderProps {
 
 interface ContextProps {
   isLogged: boolean;
-  HandleLogout: () => void;
+  handleLogout: () => void;
   HandleLogin: () => void;
-  setNewPage:(page:string)=>void,
-  currentPage:string,
+  setNewPage: (page: Pages) => void;
+  currentPage: Pages;
 }
 
 const LoginContext = createContext<ContextProps>({
   isLogged: false,
-  HandleLogout: () => {},
+  handleLogout: () => {},
   HandleLogin: () => {},
-  setNewPage:(page:string)=>{},
-  currentPage:'login',
+  setNewPage: (page: Pages) => {},
+  currentPage: Pages.LOGIN,
 });
 
 const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
@@ -27,36 +35,33 @@ const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
     const storedValue = localStorage.getItem("isLogged");
     return storedValue ? JSON.parse(storedValue) : false;
   });
-  const [currentPage, setCurrentPage] = useState<string>("login");
-
-
+  const [currentPage, setCurrentPage] = useState<Pages>(Pages.LOGIN);
 
   useEffect(() => {
     // Save isLogged to local storage whenever it changes
     localStorage.setItem("isLogged", JSON.stringify(isLogged));
   }, [isLogged]);
 
-
-  const HandleLogout = () => {
+  const handleLogout = () => {
     setIsLogged(false);
-    setCurrentPage('login')
-    //TODO: Clear token
+    setCurrentPage(Pages.LOGIN);
+    localStorage.removeItem("isLogged")
   };
 
   const HandleLogin = () => {
     setIsLogged(true);
-    setCurrentPage('welcome')
+    setCurrentPage(Pages.WELCOME);
   };
 
-  const setNewPage = (page:string) =>{
-    setCurrentPage(page)
-  }
+  const setNewPage = (page: Pages) => {
+    setCurrentPage(page);
+  };
 
   return (
     <LoginContext.Provider
       value={{
         isLogged,
-        HandleLogout,
+        handleLogout,
         HandleLogin,
         setNewPage,
         currentPage,
@@ -71,4 +76,4 @@ export const useGlobalContext = () => {
   return useContext(LoginContext);
 };
 
-export { LoginContext, LoginProvider };
+export {LoginContext, LoginProvider};

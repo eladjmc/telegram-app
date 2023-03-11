@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Login from "../components/login/Login";
 import Modal from "../components/shared/ui-components/Modal";
-import { useGlobalContext } from "../context/LoginContext";
+import {Pages, useGlobalContext} from "../context/LoginContext";
 import './LoginPage.scss'
 const LoginPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -9,7 +9,7 @@ const LoginPage = () => {
   const { setNewPage } = useGlobalContext();
 
   useEffect(() => {
-    setNewPage("Login");
+    setNewPage(Pages.LOGIN);
   });
 
 

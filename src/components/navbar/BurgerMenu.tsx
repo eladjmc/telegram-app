@@ -8,14 +8,14 @@ const BurgerMenu = ({ setCurrentPage, navigate, currentPage }: any) => {
   const [showMenu, setShowMenu] = useState(false);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
-  const { HandleLogout } = useGlobalContext();
+  const { handleLogout } = useGlobalContext();
 
   const handleNavLinkPressed = (buttonName: string) => {
     if (buttonName !== NavbarButtons.LOGOUT) {
       setCurrentPage(buttonName);
       navigate(`/${buttonName.toLowerCase()}`);
     } else {
-      HandleLogout();
+      handleLogout();
       navigate("/login");
     }
   };

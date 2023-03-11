@@ -4,11 +4,11 @@ import "./Navbar.scss";
 import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 import { NavbarButtons } from "../../constants/navbarButtons";
-import { useGlobalContext } from "../../context/LoginContext";
+import {Pages, useGlobalContext} from "../../context/LoginContext";
 import BurgerMenu from "./BurgerMenu";
 
 const Navbar = () => {
-  const { isLogged, HandleLogout, currentPage, setNewPage } =
+  const { isLogged, handleLogout, currentPage, setNewPage } =
     useGlobalContext();
 
   const navigate = useNavigate();
@@ -21,12 +21,12 @@ const Navbar = () => {
   });
 
   const handleNavLinkPressed = (buttonName: string) => {
-    if (buttonName !== NavbarButtons.LOGOUT) {
-      setNewPage(buttonName);
+    const page = buttonName.toLowerCase() as Pages;
+    if (page !== NavbarButtons.LOGOUT.toLowerCase()) {
+      setNewPage(page);
       navigate(`/${buttonName.toLowerCase()}`);
     } else {
-      HandleLogout();
-      navigate("/login");
+      handleLogout();
     }
   };
 

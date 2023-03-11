@@ -5,7 +5,7 @@ import Table, {
 } from "../components/shared/ui-components/Table";
 import "./GroupsPage.scss";
 import API from "../services/api";
-import { useGlobalContext } from "../context/LoginContext";
+import {Pages, useGlobalContext} from "../context/LoginContext";
 
 const columns: Column[] = [
   { field: "invite_link", title: "Group Invite Link" },
@@ -20,7 +20,7 @@ const Groups = () => {
   const { setNewPage } = useGlobalContext();
 
   useEffect(() => {
-    setNewPage("Groups");
+    setNewPage(Pages.GROUPS);
   });
 
   const getGroups = async () => {

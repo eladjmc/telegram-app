@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ActivateForm from "../components/activate/ActivateForm";
 import ActivateScraping from "../components/activate/ActivateScraping";
-import { useGlobalContext } from "../context/LoginContext";
+import {Pages, useGlobalContext} from "../context/LoginContext";
 import "./ActivatePage.scss";
 
 const ActivatePage = () => {
@@ -9,7 +9,7 @@ const ActivatePage = () => {
   const [dataAmount, setDataAmount] = useState({ phones: 1, groups: 1 });
   const [isSubmitted,setIsSubmitted] = useState(false);
   useEffect(() => {
-    setNewPage("Activate");
+    setNewPage(Pages.ACTIVATE);
   });
 
   return (

@@ -8,7 +8,7 @@ import API from "../services/api";
 import Modal, { ModalButton } from "../components/shared/ui-components/Modal";
 import SingleFrom from "../components/shared/ui-components/SingleFrom";
 import Input, { InputProps } from "../components/shared/ui-components/Input";
-import { useGlobalContext } from "../context/LoginContext";
+import {Pages, useGlobalContext} from "../context/LoginContext";
 
 const columns: Column[] = [
   { field: "number", title: "Phone Number" },
@@ -35,7 +35,7 @@ const Phones = () => {
   const { setNewPage } = useGlobalContext();
 
   useEffect(() => {
-    setNewPage("Phones");
+    setNewPage(Pages.PHONES);
   });
 
   const modalButtons: ModalButton[] = [

@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useGlobalContext } from "../../context/LoginContext";
+import {Pages, useGlobalContext} from "../../context/LoginContext";
 interface buttonProps {
   buttonText: string;
-  action: (buttonName: string) => void;
+  action: (buttonName: Pages) => void;
 }
 
 const NavButton = ({ buttonText, action}: buttonProps) => {
@@ -11,7 +11,7 @@ const NavButton = ({ buttonText, action}: buttonProps) => {
   const {currentPage} = useGlobalContext()
 
   useEffect(() => {
-    setIsCurrentPage(currentPage===buttonText)
+    setIsCurrentPage(currentPage===buttonText.toLowerCase())
 
   }, [currentPage,buttonText])
   
@@ -19,7 +19,7 @@ const NavButton = ({ buttonText, action}: buttonProps) => {
     <div
       className={`nav-btn ${isCurrentPage ? "nav-btn-selected" : ""}`}
       onClick={() => {
-        action(buttonText);
+        action(buttonText.toLowerCase() as Pages);
       }}
     >
       {buttonText}

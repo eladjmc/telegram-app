@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import { useGlobalContext } from '../context/LoginContext';
+import {Pages, useGlobalContext} from '../context/LoginContext';
 
 const WelcomePage = () => {
 
   const { setNewPage } = useGlobalContext();
 
   useEffect(() => {
-    setNewPage("Welcome");
+    setNewPage(Pages.WELCOME);
   });
 
   return (

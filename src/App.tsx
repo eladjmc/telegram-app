@@ -18,6 +18,7 @@ function App() {
         { path: "/groups", element: <GroupsPage /> },
         { path: "/activate", element: <ActivatePage /> },
         { path: "/welcome", element: <WelcomePage /> },
+        { path: "*", element: <PhonesPage /> }
       ],
     },
     { path: "/login", element: <LoginPage /> },
