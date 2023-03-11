@@ -1,0 +1,21 @@
+.instructions-container{
+    font-size: 1.4rem;
+    color: var(--MainColor);
+    max-width: 300px;
+    margin-bottom: 10px;
+
+    h2 {
+        text-align: left;
+        margin-bottom: 10px;
+    }
+    ul {
+        margin-bottom: 10px;
+        gap: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+    li{
+        list-style: circle;
+        font-weight: 600;
+    }
+}

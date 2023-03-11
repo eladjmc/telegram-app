@@ -20,3 +20,13 @@
     margin: 0 auto;
     }
 }
+
+
+@media screen and (max-width: 700px) {
+    .GroupsPage{
+  
+      .table-container {
+        width: 98%;
+      }
+    }
+  }

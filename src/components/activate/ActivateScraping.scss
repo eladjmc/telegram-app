@@ -245,7 +245,7 @@ button:active .icon svg {
   font-weight: 900;
 }
 .button-container .MuiPaper-root.MuiPaper-elevation {
-  margin-top: 5px;
+  margin-top: 15px;
   font-size: 1.4rem;
   border-radius: 10px;
   background-color: white;
@@ -270,5 +270,6 @@ button:active .icon svg {
   font-size: 2.4rem;
 }
 
-.instructions-container{
+.ActivatePage .MuiSvgIcon-root{
+  color: var(--MainColor);
 }

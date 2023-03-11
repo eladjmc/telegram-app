@@ -38,6 +38,10 @@
   background-color: rgb(255, 255, 255);
 }
 
+.table-container .MuiTableCell-root{
+  font-size: 1.4rem;
+}
+
 @media screen and (max-width: 600px) {
 
   .table-container .MuiToolbar-root h6 {

@@ -144,14 +144,47 @@ h2 {
   right: 0;
   top: 60px;
   height: calc(100% - 60px);
-  width: 70vw;
-  max-width: 220px;
+  width: 50vw;
+  max-width: 300px;
   z-index: 2200;
   transform: scaleX(0);
-  background-color: var(--MainColorDark);
+  background-color: var(--LightestColor);
   transition: .2s linear all;
   transform-origin: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1px 2px;
 }
 .side-Menu-show {
   transform: scaleX(1);
+}
+
+.menu-link:hover{
+  color: black;
+}
+.menu-link{
+  cursor: pointer;
+  position: relative;
+  color: var(--MainColor);
+  font-size: 1.9rem;
+  padding: 5px 30px;
+  margin:1px 0px ;
+  margin-bottom: 10px;
+  background-color: var(--LightestColor);
+  // background-color: white;
+  // border: var(--MainColor) solid 1px;
+  border-bottom: var(--MainColor) solid 1px;
+  
+}
+
+.pages-links, .logout-menu-link{
+  // border-top: var(--MainColor) solid 1px;
+}
+
+.icon-container{
+  color: var(--MainColor);
+  position: absolute;
+  right: 10px;
+  top: 6px;
 }
