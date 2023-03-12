@@ -22,21 +22,21 @@
 <br>
 
 # Screenshots:
-![plot](./screenshots/screenshot1.png) 
+![plot](./screenshots/Screenshot1.png) 
 
-![plot](./screenshots/screenshot2.png) 
+![plot](./screenshots/Screenshot2.png) 
 
-![plot](./screenshots/screenshot3.png) 
+![plot](./screenshots/Screenshot3.png) 
 
-![plot](./screenshots/screenshot4.png) 
+![plot](./screenshots/Screenshot4.png) 
 
 <br>
 
 ## Responsiveness:
 
-![plot](./screenshots/screenshot5.png) 
+![plot](./screenshots/Screenshot5.png) 
 
-![plot](./screenshots/screenshot6.png) 
+![plot](./screenshots/Screenshot6.png) 
 
 
 
