@@ -38,3 +38,34 @@
   max-width: 790px;
   gap: 50px;
 }
+
+
+.ActivatePage .MuiPaper-root.MuiPaper-elevation {
+  margin-top: 15px;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  background-color: white;
+  border: var(--MainColor) 1.5px solid;
+  color: var(--MainColor)
+}
+
+.ActivatePage .MuiTypography-root.MuiTypography-body1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+ 
+}
+
+.scraping-btn-container{
+  color: var(--MainColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.ActivatePage .MuiSvgIcon-fontSizeLarge {
+  font-size: 2.4rem;
+}
+
+.ActivatePage .MuiSvgIcon-root{
+  color: var(--MainColor);
+}

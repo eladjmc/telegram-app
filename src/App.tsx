@@ -17,12 +17,11 @@ function App() {
         { path: "/phones", element: <PhonesPage /> },
         { path: "/groups", element: <GroupsPage /> },
         { path: "/activate", element: <ActivatePage /> },
-        { path: "/welcome", element: <WelcomePage /> },
+        { path: "/welcome", element: <PhonesPage /> },
         { path: "*", element: <PhonesPage /> }
       ],
     },
     { path: "/login", element: <LoginPage /> },
-    // { path: "*", element: <WelcomePage /> }, // need to make Error page
   ]);
   return <RouterProvider router={router} />;
 }

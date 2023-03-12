@@ -52,15 +52,6 @@ const Groups = () => {
   };
 
   useEffect(() => {
-    //bring data
-    // setGroups([
-    //   { invite_link: "im an Invite link and im pretty long"},
-    //   { invite_link: "im an another Invite link and im pretty long"},
-    //   { invite_link: "im yet another Invite link and im pretty long"},
-    //   { invite_link: "im the 4th Invite link"},
-    //   { invite_link: "im the 5th Invite link"},
-
-    // ]);
     const abortController = new AbortController();
 
     getGroups();
