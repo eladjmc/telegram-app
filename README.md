@@ -30,9 +30,6 @@
 
 ![plot](./screenshots/Screenshot4.png) 
 
-<br>
-
-## Responsiveness:
 
 ![plot](./screenshots/Screenshot5.png) 
 
@@ -56,7 +53,7 @@ Run the command ``` npm install ``` to install all the dependencies, after it's 
 By going through all the steps and making sure you have the prerequisites you:
 - Deployed the app locally with all the dependencies needed.
 - Can make calls to the backend and handle the responses from it.
-- while having the backend connected you should be able to gather tons of users to one telegram group.
+- Should be able to gather tons of users to one telegram group.
 
 <br>
 
