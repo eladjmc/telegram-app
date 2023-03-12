@@ -7,9 +7,14 @@ import API from "../../services/api";
 import { Alert, AlertTitle } from "@mui/material";
 import ActivateInstructions from "./ActivateInstructions";
 
+const MILISEC_IN_SECOND = 1000;
 let intervalId = setInterval(() => {}, Number.MAX_SAFE_INTEGER);
 
-const ActivateScraping = () => {
+interface ActivateScrapingProps {
+  intervalTimer: number;
+}
+
+const ActivateScraping = ({ intervalTimer }: ActivateScrapingProps) => {
   const [isScraping, setIsScraping] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -18,7 +23,7 @@ const ActivateScraping = () => {
     deployToast();
     intervalId = setInterval(() => {
       deployToast();
-    }, 10000);
+    }, intervalTimer * MILISEC_IN_SECOND);
 
     setIsScraping(true);
   };
@@ -39,7 +44,7 @@ const ActivateScraping = () => {
       pending: "Scraping",
       success: {
         render({ data }) {
-          return JSON.stringify(data) || "Success";
+          return data?.data || "Success";
         },
       },
       error: {

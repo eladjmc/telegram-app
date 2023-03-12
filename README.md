@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Roboto&weight=900&size=40&duration=3000&pause=2000&color=A849FF&center=true&width=1000&height=90&lines=Telegram+Groups+Filler;React+App)](https://git.io/typing-svg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<hr>
 
-## Available Scripts
+## I was given a task by a client to build the Front-end of a React app with three main pages:
 
-In the project directory, you can run:
+-  Phones Page - This page will enable the user to add/remove phones that will send the invite links(zombies)🧟‍♂️.
 
-### `npm start`
+-  Groups Page - This page will enable the user to add/edit/remove groups that the app will scrape from.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-  Activate Page - This page will enable the user to config his settings and activate the bot.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Prerequisites
+* BackEnd server configured with the keys needed for the shoes in the app: ```{imgUrl, description, price}```
+* Set up the api.js to have the right api to access your own Database
+* Small cup of coffee 😉☕
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Screenshots:
+![plot](./screenshots/screenshot1.png) 
 
-### `npm run eject`
+![plot](./screenshots/screenshot2.png) 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![plot](./screenshots/screenshot3.png) 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![plot](./screenshots/screenshot4.png) 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Responsiveness:
 
-## Learn More
+<img src="./screenshots/screenshot5.png" width="300" height="500" />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="./screenshots/screenshot6.png" width="300" height="500" />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+<br>
+<br>
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Roboto&weight=900&size=24&duration=100&pause=2000&color=28FF2D&repeat=false&width=500&height=34&lines=Deployment)](https://git.io/typing-svg)
+
+In order to run the app locally you will need to install all the dependencies from the package.json file.  
+Run the command ``` npm install ``` to install all the dependencies, after it's done you can run ``` npm start``` to start the app locally in ```localhost:3000```
+
+
+<br>
+
+
+# Summary
+By going through all the steps and making sure you have the prerequisites you:
+- Deployed the shoes store Admins panel app locally with all the dependencies needed.
+- Can Edit/Delete/Add shoes on you Admins panel app.
+
+<br>
+
+## `Feel free to contact me`:
+
+
+[![Linkedin Badge](https://img.shields.io/badge/-Elad%20Harel-blue?style=flat-square&logo=Linkedin&logoColor=white&link&=https://www.linkedin.com/in/elad-harel-06ab61183/)](https://www.linkedin.com/in/elad-harel-06ab61183/)
+[![Gmail Badge](https://img.shields.io/badge/-Eladjmc88@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:Eladjmc88@gmail.com)](mailto:benben95939@gmail.com)

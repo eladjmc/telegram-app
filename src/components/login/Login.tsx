@@ -3,7 +3,7 @@ import { useGlobalContext } from "../../context/LoginContext";
 import { useNavigate } from "react-router-dom";
 import { InputProps } from "../shared/ui-components/Input";
 import SingleFrom from "../shared/ui-components/SingleFrom";
-import { validateEmail } from "../../utils/validateEmail";
+import { validateEmail } from "../shared/utils/validateEmail";
 import USERS_API from "../../services/usersApi";
 interface LoginProps {
   setIsOpen: (is: boolean) => void;

@@ -2,7 +2,7 @@ import axios from "axios";
 
 class Api {
   axios = axios.create({
-    baseURL: "http://52.174.69.26:5001/",
+    baseURL: "https://telegram-backend.azurewebsites.net/",
   });
 
   async get<T = any>(url: string) {

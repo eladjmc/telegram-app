@@ -49,7 +49,7 @@ const ActivatePage = () => {
         {!!(dataAmounts.phones * dataAmounts.groups) && !isLoading ? (
           <>
             <ActivateForm form={form} setForm={setForm} />
-            <ActivateScraping />
+            <ActivateScraping intervalTimer={form.timer} />
           </>
         ) : (
           <div className="error-no-amount">

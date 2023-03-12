@@ -4,8 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import GroupsPage from "./pages/GroupsPage";
 import ActivatePage from "./pages/ActivatePage";
-import WelcomePage from "./pages/WelcomePage";
-import { useGlobalContext } from "./context/LoginContext";
 
 function App() {
   const router = createBrowserRouter([
@@ -13,7 +11,7 @@ function App() {
       path: "/",
       element: <Navbar />,
       children: [
-        { path: "/", element: <WelcomePage /> }, 
+        { path: "/", element: <PhonesPage /> },
         { path: "/phones", element: <PhonesPage /> },
         { path: "/groups", element: <GroupsPage /> },
         { path: "/activate", element: <ActivatePage /> },
