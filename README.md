@@ -13,8 +13,8 @@
 
 
 ## Prerequisites
-* BackEnd server configured with the keys needed for the shoes in the app: ```{imgUrl, description, price}```
-* Set up the api.js to have the right api to access your own Database
+* BackEnd server configured.
+* Set up the api.tsx to have the right api to access your own backend
 * Small cup of coffee 😉☕
 
 
@@ -34,9 +34,10 @@
 
 ## Responsiveness:
 
-<img src="./screenshots/screenshot5.png" width="300" height="500" />
+![plot](./screenshots/screenshot5.png) 
 
-<img src="./screenshots/screenshot6.png" width="300" height="500" />
+![plot](./screenshots/screenshot6.png) 
+
 
 
 <br>
@@ -53,8 +54,9 @@ Run the command ``` npm install ``` to install all the dependencies, after it's 
 
 # Summary
 By going through all the steps and making sure you have the prerequisites you:
-- Deployed the shoes store Admins panel app locally with all the dependencies needed.
-- Can Edit/Delete/Add shoes on you Admins panel app.
+- Deployed the app locally with all the dependencies needed.
+- Can make calls to the backend and handle the responses from it.
+- while having the backend connected you should be able to gather tons of users to one telegram group.
 
 <br>
 
