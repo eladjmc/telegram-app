@@ -4,7 +4,7 @@
 
 ![plot](./screenshots/Screenshot0.png) 
 
-## I was given a task by a client to build the Front-end of a React app with three main pages:
+## I was given a task by a client to build a React app (front-end) with three main pages:
 
 -  Phones Page - This page will enable the user to add/remove phones that will send the invite links(zombies)🧟‍♂️.
 
