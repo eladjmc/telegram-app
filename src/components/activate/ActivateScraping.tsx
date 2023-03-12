@@ -49,12 +49,10 @@ const ActivateScraping = ({ intervalTimer }: ActivateScrapingProps) => {
       },
       error: {
         render({ data }) {
-          console.error(data);
           setIsScraping(false);
           clearInterval(intervalId);
-          // setErrorMessage(JSON.stringify(data));
           setErrorMessage("Error Scraping");
-          return "Error Scraping";
+          return "Not implemented" ;
         },
       },
     });
