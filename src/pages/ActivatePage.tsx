@@ -46,7 +46,7 @@ const ActivatePage = () => {
       <h1>Start Process</h1>
 
       <div className="actions-container">
-        {!!(dataAmounts.phones * dataAmounts.groups) && isLoading ? (
+        {!!(dataAmounts.phones * dataAmounts.groups) && !isLoading ? (
           <>
             <ActivateForm form={form} setForm={setForm} />
             <ActivateScraping />
