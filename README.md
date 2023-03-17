@@ -19,6 +19,12 @@
 * Set up the api.tsx to have the right api to access your own backend
 * Small cup of coffee 😉☕
 
+## How To Use The App
+
+- Login to your account (you can use dummy user: admin@lol.com pass: 1234)
+- Pick the relevant page Phones/Groups/Activate
+- After setting up all the phones and groups you have/need, make sure to give an invite link to your target group at the activate page, press update button on the form and you are ready to start scraping
+
 ## App demo link 
 [Telegram-App](https://telegram-scraper.netlify.app/)
 
