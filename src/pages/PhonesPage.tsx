@@ -10,14 +10,15 @@ import Input, { InputProps } from "../components/shared/ui-components/Input";
 import {Pages, useGlobalContext} from "../context/LoginContext";
 
 const columns: Column[] = [
-  { field: "number", title: "Phone Number" },
+  { field: "phone", title: "Phone Number" },
   { field: "is_banned", title: "Banned" },
   { field: "is_connected", title: "Connected" },
 ];
 
 interface PhoneData {
-  number: string;
+  phone: string;
   is_banned: boolean;
+  is_connected: boolean;
 }
 
 interface ModalData {
@@ -88,7 +89,7 @@ const Phones = () => {
 
   const getPhones = async () => {
     try {
-      const result = await API.get("/phones");
+      const result = await API.get("/phones/");
       setPhones(result.data);
     } catch (error) {}
   };
@@ -102,7 +103,7 @@ const Phones = () => {
 
   const onRowAdd = async (newRow: GenericData) => {
     try {
-      const result = await API.post(`/phones/${newRow.number}`, null);
+      const result = await API.post(`/phones/${newRow.phone}`, null);
       if (!result.data.phone_code_hash || result.data.error) {
         //TODO: display error message
         return;

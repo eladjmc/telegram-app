@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import API from "../services/api";
 
 export enum Pages {
   LOGIN = "login",
@@ -14,42 +15,46 @@ interface LoginProviderProps {
 }
 
 interface ContextProps {
-  isLogged: boolean;
+  isLogged: string;
   handleLogout: () => void;
-  HandleLogin: () => void;
+  HandleLogin: (token: string) => void;
   setNewPage: (page: Pages) => void;
   currentPage: Pages;
 }
 
 const LoginContext = createContext<ContextProps>({
-  isLogged: false,
+  isLogged: '',
   handleLogout: () => {},
-  HandleLogin: () => {},
+  HandleLogin: (token: string) => {},
   setNewPage: (page: Pages) => {},
   currentPage: Pages.LOGIN,
 });
 
 const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
-  const [isLogged, setIsLogged] = useState<boolean>(() => {
+  const [isLogged, setIsLogged] = useState<string>(() => {
     // Load isLogged from local storage on initialization
-    const storedValue = localStorage.getItem("isLogged");
-    return storedValue ? JSON.parse(storedValue) : false;
+    const token = localStorage.getItem("token");
+
+    token && API.setToken(token);
+    return token || '';
   });
   const [currentPage, setCurrentPage] = useState<Pages>(Pages.LOGIN);
 
   useEffect(() => {
     // Save isLogged to local storage whenever it changes
-    localStorage.setItem("isLogged", JSON.stringify(isLogged));
+    localStorage.setItem("token", isLogged);
   }, [isLogged]);
 
   const handleLogout = () => {
-    setIsLogged(false);
+    setIsLogged('');
+    API.removeToken();
     setCurrentPage(Pages.LOGIN);
-    localStorage.removeItem("isLogged")
+    localStorage.removeItem("token")
   };
 
-  const HandleLogin = () => {
-    setIsLogged(true);
+  const HandleLogin = (token: string) => {
+    setIsLogged(token);
+    API.setToken(token);
     setCurrentPage(Pages.WELCOME);
   };
 

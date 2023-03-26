@@ -9,10 +9,16 @@ import {Pages, useGlobalContext} from "../context/LoginContext";
 
 const columns: Column[] = [
   { field: "invite_link", title: "Group Invite Link" },
+  { field: "invitable", title: "Invitable" },
+  { field: "last_invited", title: "Last Invited" },
+  { field: "participants", title: "Participants" },
 ];
 
 interface GroupData {
   invite_link: string;
+  invitable: boolean,
+  last_invited: number,
+  participants: number
 }
 
 const Groups = () => {
@@ -25,7 +31,7 @@ const Groups = () => {
 
   const getGroups = async () => {
     try {
-      const result = await API.get("/groups");
+      const result = await API.get("/groups/");
       setGroups(result.data);
     } catch (error) {}
   };

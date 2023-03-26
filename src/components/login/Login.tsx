@@ -5,6 +5,8 @@ import { InputProps } from "../shared/ui-components/Input";
 import SingleFrom from "../shared/ui-components/SingleFrom";
 import { validateEmail } from "../shared/utils/validateEmail";
 import USERS_API from "../../services/usersApi";
+import API from "../../services/api";
+import {NavbarButtons} from "../../constants/navbarButtons";
 interface LoginProps {
   setIsOpen: (is: boolean) => void;
   setErrorMessage: (message: string) => void;
@@ -22,11 +24,6 @@ const Login = ({ setIsOpen, setErrorMessage }: LoginProps) => {
   const onChange = (e: ChangeEvent<HTMLInputElement>, label: string) => {
     setForm({ ...form, [label.toLowerCase()]: e.target.value });
   };
-
-// // // // // // // // //
-//    admin@lol.com     //
-//       1234          //
-// // // // // // // //
 
   const onSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     if (!e) return;
@@ -50,36 +47,17 @@ const Login = ({ setIsOpen, setErrorMessage }: LoginProps) => {
       setIsLoading(true);
 
       try {
-        const result = await USERS_API.get("/users.json");
-        const usersData = result.data;
-        const userData = usersData.find(
-          (user: { email: string; password: string }) => user.email === email
-        );
-        if (!userData) {
-          const msg = "No such email in database";
-          setErrorMessage(msg);
-          setIsOpen(true);
-          setIsLoading(false);
-          return;
-        }
-        if (userData.password !== password) {
-          // Invalid password
-          const msg = "Password does not match email";
-          setErrorMessage(msg);
-          setIsOpen(true);
-          setIsLoading(false);
-          return;
-        } else {
-          HandleLogin(); // use this only when confirmed details
-          setTimeout(() => {
-            console.log("submitted");
-            setIsLoading(false);
-            navigate(`/welcome`);
-          }, 500);
-        }
-      } catch (error) {
-        const msg = "Database Error, please try later";
-        setErrorMessage(msg);
+        const result = await API.post("/auth/login", {
+          email,
+          password,
+        });
+        const token = result.data;
+        HandleLogin(`Bearer ${token}`);
+        setIsLoading(false);
+        navigate(`/${NavbarButtons.PHONES.toLowerCase()}`);
+      } catch (error: any) {
+        debugger
+        setErrorMessage(error.response.data);
         setIsOpen(true);
         setIsLoading(false);
       }
