@@ -80,6 +80,7 @@ const Groups = () => {
             onRowAdd={onRowAdd}
             onRowDelete={onRowDelete}
             onRowUpdate={onRowUpdate}
+            loading={false}
           />
         )
       </div>

@@ -18,6 +18,7 @@ interface TableProps {
   columns: Column[];
   data: any[];
   title: string;
+  loading: boolean;
   onRowAdd: (newRow: GenericData) => Promise<void>;
   onRowUpdate?: (newData: GenericData, oldData: any) => Promise<void>;
   onRowDelete: (selectedRow: any) => Promise<void>;
@@ -31,6 +32,7 @@ const Table = ({
   onRowAdd,
   onRowUpdate,
   onRowDelete,
+  loading,
 }: TableProps) => {
   const defaultMaterialTheme = createTheme({});
 
@@ -43,6 +45,7 @@ const Table = ({
             onRowUpdate,
             onRowDelete,
           }}
+          isLoading={loading}
           options={{
             paging: true,
             headerStyle: {
@@ -51,7 +54,6 @@ const Table = ({
               fontSize: "1.6rem",
               fontWeight: 500,
             },
-
             pageSize: 5, // make initial page size
             emptyRowsWhenPaging: true, // To avoid of having empty rows
             pageSizeOptions: [5, 10, 20, 50], // rows selection options

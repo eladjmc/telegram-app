@@ -47,8 +47,11 @@ const Phones = () => {
         }
         try {
           const result = await API.post(
-            `/phones/${isModalOpen.phoneNumber}/${isModalOpen.hashCode}/${tokenInput}`,
-            null
+            `/phones/`,
+            {
+              phone: isModalOpen.phoneNumber,
+              code: tokenInput,
+            }
           );
           if (result.status === 200) {
             setIsModalOpen(null);
@@ -149,6 +152,7 @@ const Phones = () => {
           data={phones}
           onRowAdd={onRowAdd}
           onRowDelete={onRowDelete}
+          loading={false}
         />
       </div>
     </section>
