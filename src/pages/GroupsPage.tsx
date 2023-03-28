@@ -5,7 +5,8 @@ import Table, {
 } from "../components/shared/ui-components/Table";
 import "./GroupsPage.scss";
 import API from "../services/api";
-import {Pages, useGlobalContext} from "../context/LoginContext";
+import { Pages, useGlobalContext } from "../context/LoginContext";
+import {toast, ToastContainer} from "react-toastify";
 
 const columns: Column[] = [
   { field: "invite_link", title: "Group Invite Link" },
@@ -16,9 +17,9 @@ const columns: Column[] = [
 
 interface GroupData {
   invite_link: string;
-  invitable: boolean,
-  last_invited: number,
-  participants: number
+  invitable: boolean;
+  last_invited: number;
+  participants: number;
 }
 
 const Groups = () => {
@@ -38,21 +39,19 @@ const Groups = () => {
 
   const onRowDelete = async (selectedRow: GenericData) => {
     try {
-      await API.delete(`/groups/${selectedRow.invite_link}`);
-      await getGroups();
-    } catch (error) {}
+      const result = await API.delete(`/groups/`, { invite_link: selectedRow.invite_link });
+      if (result.data.error) {
+        toast.error(result.data.error);
+      }
+      setGroups(result.data)
+    } catch (error: any) {
+      toast.error("Error deleting group");
+    }
   };
 
   const onRowAdd = async (newRow: GenericData) => {
     try {
-      await API.post(`/groups/${newRow.invite_link}`, null);
-      await getGroups();
-    } catch (error) {}
-  };
-
-  const onRowUpdate = async (newData: GenericData, oldData: any) => {
-    try {
-      await API.put(`/groups/${oldData.invite_link}`, newData);
+      await API.post(`/groups/`, { invite_link: newRow.invite_link });
       await getGroups();
     } catch (error) {}
   };
@@ -63,26 +62,23 @@ const Groups = () => {
     getGroups();
 
     return () => {
-      
       abortController.abort();
     };
   }, []);
 
   return (
     <section className="GroupsPage">
+      <ToastContainer />
       <h1>Groups Connected</h1>
       <div className="table-container">
-        (
-          <Table
-            title="Groups List"
-            columns={columns}
-            data={groups}
-            onRowAdd={onRowAdd}
-            onRowDelete={onRowDelete}
-            onRowUpdate={onRowUpdate}
-            loading={false}
-          />
-        )
+        <Table
+          title="Groups List"
+          columns={columns}
+          data={groups}
+          onRowAdd={onRowAdd}
+          onRowDelete={onRowDelete}
+          loading={false}
+        />
       </div>
     </section>
   );

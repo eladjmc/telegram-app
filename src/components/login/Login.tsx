@@ -56,8 +56,7 @@ const Login = ({ setIsOpen, setErrorMessage }: LoginProps) => {
         setIsLoading(false);
         navigate(`/${NavbarButtons.PHONES.toLowerCase()}`);
       } catch (error: any) {
-        debugger
-        setErrorMessage(error.response.data);
+        setErrorMessage(error.response?.data || error.message || error);
         setIsOpen(true);
         setIsLoading(false);
       }

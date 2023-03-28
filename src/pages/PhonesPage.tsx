@@ -47,7 +47,7 @@ const Phones = () => {
         }
         try {
           const result = await API.post(
-            `/phones/`,
+            `/phones/sign`,
             {
               phone: isModalOpen.phoneNumber,
               code: tokenInput,
@@ -99,7 +99,7 @@ const Phones = () => {
 
   const onRowDelete = async (selectedRow: GenericData) => {
     try {
-      await API.delete(`/phones/${selectedRow.number}`);
+      await API.delete(`/phones/${selectedRow.phone}`, null);
       await getPhones();
     } catch (error) {}
   };
@@ -107,13 +107,14 @@ const Phones = () => {
   const onRowAdd = async (newRow: GenericData) => {
     try {
       const result = await API.post(`/phones/${newRow.phone}`, null);
-      if (!result.data.phone_code_hash || result.data.error) {
+      const { data } = result;
+      if (!data.phone_code_hash || !data.phone || data.error) {
         //TODO: display error message
         return;
       }
       setIsModalOpen({
-        phoneNumber: newRow.number as string,
-        hashCode: result.data.phone_code_hash,
+        phoneNumber: data.phone,
+        hashCode: data.phone_code_hash,
       });
       getPhones();
     } catch (error: any) {

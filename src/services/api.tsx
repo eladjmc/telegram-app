@@ -31,8 +31,8 @@ class Api {
     return await this.axios.post<T>(url, data);
   }
 
-  async delete<T = any>(url: string) {
-    return await this.axios.delete<T>(url);
+  async delete<T = any>(url: string, data: any) {
+    return await this.axios.delete<T>(url, { data });
   }
 
   async put<T = any>(url: string, data: any) {
