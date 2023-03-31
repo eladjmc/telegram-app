@@ -4,10 +4,14 @@ import axios, {
 
 class Api {
   axios: AxiosInstance;
+  BACKEND_PATH = "/api"
 
   constructor() {
+    const urlObject = new URL(window.location.href);
+    const url = `${urlObject.protocol}//${urlObject.hostname}:443`;
+
     this.axios = axios.create({
-      baseURL: "http://127.0.0.1:443/",
+      baseURL: url + this.BACKEND_PATH,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json" ,
