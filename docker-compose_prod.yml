@@ -2,8 +2,6 @@ version: "3"
 
 services:
   frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile_prod
+    image: telegram_frontend:latest
     ports:
-      - "443:3000"
+      - "443:5000"
