@@ -10,14 +10,15 @@ import Input, { InputProps } from "../components/shared/ui-components/Input";
 import {Pages, useGlobalContext} from "../context/LoginContext";
 
 const columns: Column[] = [
-  { field: "number", title: "Phone Number" },
+  { field: "phone", title: "Phone Number" },
   { field: "is_banned", title: "Banned" },
   { field: "is_connected", title: "Connected" },
 ];
 
 interface PhoneData {
-  number: string;
+  phone: string;
   is_banned: boolean;
+  is_connected: boolean;
 }
 
 interface ModalData {
@@ -46,8 +47,11 @@ const Phones = () => {
         }
         try {
           const result = await API.post(
-            `/phones/${isModalOpen.phoneNumber}/${isModalOpen.hashCode}/${tokenInput}`,
-            null
+            `/phones/sign`,
+            {
+              phone: isModalOpen.phoneNumber,
+              code: tokenInput,
+            }
           );
           if (result.status === 200) {
             setIsModalOpen(null);
@@ -88,28 +92,29 @@ const Phones = () => {
 
   const getPhones = async () => {
     try {
-      const result = await API.get("/phones");
+      const result = await API.get("/phones/");
       setPhones(result.data);
     } catch (error) {}
   };
 
   const onRowDelete = async (selectedRow: GenericData) => {
     try {
-      await API.delete(`/phones/${selectedRow.number}`);
+      await API.delete(`/phones/${selectedRow.phone}`, null);
       await getPhones();
     } catch (error) {}
   };
 
   const onRowAdd = async (newRow: GenericData) => {
     try {
-      const result = await API.post(`/phones/${newRow.number}`, null);
-      if (!result.data.phone_code_hash || result.data.error) {
+      const result = await API.post(`/phones/${newRow.phone}`, null);
+      const { data } = result;
+      if (!data.phone_code_hash || !data.phone || data.error) {
         //TODO: display error message
         return;
       }
       setIsModalOpen({
-        phoneNumber: newRow.number as string,
-        hashCode: result.data.phone_code_hash,
+        phoneNumber: data.phone,
+        hashCode: data.phone_code_hash,
       });
       getPhones();
     } catch (error: any) {
@@ -148,6 +153,7 @@ const Phones = () => {
           data={phones}
           onRowAdd={onRowAdd}
           onRowDelete={onRowDelete}
+          loading={false}
         />
       </div>
     </section>

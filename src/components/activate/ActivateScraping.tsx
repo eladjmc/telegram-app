@@ -39,7 +39,7 @@ const ActivateScraping = ({ intervalTimer }: ActivateScrapingProps) => {
   }, []);
 
   const deployToast = async () => {
-    const result = API.post("/activate", null);
+    const result = API.post("/activate/start", null);
     toast.promise(result, {
       pending: "Scraping",
       success: {
