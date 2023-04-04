@@ -8,7 +8,7 @@ class Api {
 
   constructor() {
     const urlObject = new URL(window.location.href);
-    const url = `${urlObject.protocol}//${urlObject.hostname}:443`;
+    const url = `${urlObject.protocol}//${urlObject.hostname}:5050`;
 
     this.axios = axios.create({
       baseURL: url + this.BACKEND_PATH,

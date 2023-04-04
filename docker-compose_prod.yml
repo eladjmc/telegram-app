@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile_prod
+    ports:
+      - "443:3000"
