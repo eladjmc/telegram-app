@@ -1,0 +1,52 @@
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: debug
+      run: |
+        ls -la
+    - name: Build the Docker image
+      run: docker build . --file ./Dockerfile_prod --tag telegram_frontend:latest
+    - name: Save the image
+      run: docker save telegram_frontend:latest | gzip > telegram_frontend.tar.gz
+    - uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+      name: Upload the image to VPS
+      with:
+        host: ${{ secrets.VPS_IP }}
+        user: ${{ secrets.VPS_USER }}
+        pass: ${{ secrets.VPS_PASSWORD }}
+        first_ssh: mkdir -p /docker && rm -rf /docker/telegram_frontend.tar.gz
+        scp: ./telegram_frontend.tar.gz => /docker
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: debug
+      run: |
+        ls -la
+    - uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+      name: Deploy in VPS
+      with:
+        host: ${{ secrets.VPS_IP }}
+        user: ${{ secrets.VPS_USER }}
+        pass: ${{ secrets.VPS_PASSWORD }}
+        first_ssh: |
+          cd /docker
+          docker load < telegram_frontend.tar.gz
+          ls -la
+        scp: ./docker-compose_front_prod.yml => /docker
+        last_ssh: |
+          cd /docker
+          docker-compose -f docker-compose_front_prod.yml up -d --build

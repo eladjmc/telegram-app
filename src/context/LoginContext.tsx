@@ -40,11 +40,6 @@ const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
   });
   const [currentPage, setCurrentPage] = useState<Pages>(Pages.LOGIN);
 
-  useEffect(() => {
-    // Save isLogged to local storage whenever it changes
-    localStorage.setItem("token", isLogged);
-  }, [isLogged]);
-
   const handleLogout = () => {
     setIsLogged('');
     API.removeToken();
@@ -55,7 +50,6 @@ const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
   const HandleLogin = (token: string) => {
     setIsLogged(token);
     API.setToken(token);
-    setCurrentPage(Pages.WELCOME);
   };
 
   const setNewPage = (page: Pages) => {

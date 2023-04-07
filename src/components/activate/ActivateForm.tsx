@@ -8,11 +8,13 @@ import "./ActivateForm.scss";
 interface ActivateFormProps {
   form: { invite: string; timer: number };
   setForm: (settings: { invite: string; timer: number }) => void;
+  minimumAllowed: number;
 }
 
 const ActivateForm = ({
   setForm,
   form,
+  minimumAllowed,
 }: ActivateFormProps) => {
   const onChange = (e: ChangeEvent<HTMLInputElement>, label: string) => {
     setForm({ ...form, [label.toLowerCase()]: e.target.value });
@@ -41,7 +43,8 @@ const ActivateForm = ({
       type: "number",
       value: form.timer,
       placeholder: " ",
-      min: 60,
+      min: minimumAllowed,
+      message: `Minimum allowed: ${minimumAllowed}`,
       onChange,
     },
   ];

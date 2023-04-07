@@ -126,8 +126,6 @@ const Phones = () => {
   };
 
   useEffect(() => {
-    //bring data
-    // setPhones([{ number: "im a number", is_banned: true },{ number: "im a number", is_banned: true }]);
     const abortController = new AbortController();
 
     getPhones();

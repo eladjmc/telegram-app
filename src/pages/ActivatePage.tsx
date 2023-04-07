@@ -6,12 +6,14 @@ import "./ActivatePage.scss";
 import API from "../services/api";
 import { Alert, AlertTitle } from "@mui/material";
 
+const DEFAULT_MINIMUM = 60;
+
 const ActivatePage = () => {
   const { setNewPage } = useGlobalContext();
   const [dataAmounts, setDataAmounts] = useState({ phones: 0, groups: 0 });
   const [form, setForm] = useState({
     invite: "",
-    timer: 60,
+    timer: DEFAULT_MINIMUM,
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -36,6 +38,11 @@ const ActivatePage = () => {
     }
   };
 
+  const getMinimum = () => {
+    const fixed = (DEFAULT_MINIMUM / dataAmounts.phones).toFixed(0);
+    return Number(fixed) + 5;
+  }
+
   useEffect(() => {
     setNewPage(Pages.ACTIVATE);
     getSetting();
@@ -48,7 +55,7 @@ const ActivatePage = () => {
       <div className="actions-container">
         {!!(dataAmounts.phones * dataAmounts.groups) && !isLoading ? (
           <>
-            <ActivateForm form={form} setForm={setForm} />
+            <ActivateForm form={form} setForm={setForm} minimumAllowed={getMinimum()} />
             <ActivateScraping intervalTimer={form.timer} />
           </>
         ) : (

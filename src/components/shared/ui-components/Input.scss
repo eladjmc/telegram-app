@@ -63,3 +63,8 @@
 .input:focus ~ .placeholder {
   color: var(--MainColor);
 }
+
+.message {
+  margin-top: 15px;
+  color: var(--MainColor);
+}
