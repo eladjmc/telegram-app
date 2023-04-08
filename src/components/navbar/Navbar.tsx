@@ -1,25 +1,19 @@
-import React, {Suspense, useEffect} from "react";
+import React, { Suspense, useEffect } from "react";
 import { Outlet } from "react-router";
 import "./Navbar.scss";
 import NavButton from "./NavButton";
 import { useNavigate } from "react-router-dom";
 import { NavbarButtons } from "../../constants/navbarButtons";
-import {Pages, useGlobalContext} from "../../context/LoginContext";
+import { Pages, useGlobalContext } from "../../context/LoginContext";
 import BurgerMenu from "./BurgerMenu";
-import {LinearProgress} from "@mui/material";
+import { LinearProgress } from "@mui/material";
+import { useSignOut } from "react-auth-kit";
 
 const Navbar = () => {
-  const { isLogged, handleLogout, currentPage, setNewPage } =
-    useGlobalContext();
+  const { currentPage, setNewPage } = useGlobalContext();
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLogged) {
-      console.log('im not logged');
-      navigate("/login");
-    }
-  });
+  const signOut = useSignOut();
 
   const handleNavLinkPressed = (buttonName: string) => {
     const page = buttonName.toLowerCase() as Pages;
@@ -27,7 +21,8 @@ const Navbar = () => {
       setNewPage(page);
       navigate(`/${buttonName.toLowerCase()}`);
     } else {
-      handleLogout();
+      signOut();
+      navigate(`/${Pages.LOGIN}`);
     }
   };
 

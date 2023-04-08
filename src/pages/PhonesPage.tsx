@@ -8,6 +8,7 @@ import API from "../services/api";
 import Modal, { ModalButton } from "../components/shared/ui-components/Modal";
 import Input, { InputProps } from "../components/shared/ui-components/Input";
 import {Pages, useGlobalContext} from "../context/LoginContext";
+import TablePage from "../components/shared/ui-components/TablePage";
 
 const columns: Column[] = [
   { field: "phone", title: "Phone Number" },
@@ -143,17 +144,17 @@ const Phones = () => {
         error={modalError}
         title={"Please Insert Your Token"}
       />
-      <h1>Phones Connected</h1>
-      <div className="table-container">
-        <Table
-          title="Phones List"
-          columns={columns}
-          data={phones}
-          onRowAdd={onRowAdd}
-          onRowDelete={onRowDelete}
-          loading={false}
-        />
-      </div>
+      <TablePage
+        tableData={{
+          columns,
+          data: phones,
+          onRowAdd,
+          onRowDelete,
+          loading: false,
+          title: "Phones List",
+        }}
+        title={"Phones Connected"}
+      />
     </section>
   );
 };

@@ -14,7 +14,7 @@ export interface Column {
 
 }
 
-interface TableProps {
+export interface TableProps {
   columns: Column[];
   data: any[];
   title: string;
@@ -22,7 +22,6 @@ interface TableProps {
   onRowAdd: (newRow: GenericData) => Promise<void>;
   onRowUpdate?: (newData: GenericData, oldData: any) => Promise<void>;
   onRowDelete: (selectedRow: any) => Promise<void>;
-  
 }
 
 const Table = ({
@@ -54,9 +53,9 @@ const Table = ({
               fontSize: "1.6rem",
               fontWeight: 500,
             },
-            pageSize: 5, // make initial page size
+            pageSize: 10, // make initial page size
             emptyRowsWhenPaging: true, // To avoid of having empty rows
-            pageSizeOptions: [5, 10, 20, 50], // rows selection options
+            pageSizeOptions: [10, 20, 50], // rows selection options
             paginationType: "stepped",
             // paginationPosition: "top",
             showFirstLastPageButtons: true,

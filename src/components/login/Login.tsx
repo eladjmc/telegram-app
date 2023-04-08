@@ -1,25 +1,26 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import { useGlobalContext } from "../../context/LoginContext";
+import React, { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSignIn } from "react-auth-kit";
+import { Pages } from "../../context/LoginContext";
 import { InputProps } from "../shared/ui-components/Input";
 import SingleFrom from "../shared/ui-components/SingleFrom";
 import { validateEmail } from "../shared/utils/validateEmail";
-import USERS_API from "../../services/usersApi";
 import API from "../../services/api";
-import {NavbarButtons} from "../../constants/navbarButtons";
+
 interface LoginProps {
   setIsOpen: (is: boolean) => void;
   setErrorMessage: (message: string) => void;
 }
 
 const Login = ({ setIsOpen, setErrorMessage }: LoginProps) => {
+  const signIn = useSignIn();
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  const { HandleLogin } = useGlobalContext();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>, label: string) => {
     setForm({ ...form, [label.toLowerCase()]: e.target.value });
@@ -52,9 +53,13 @@ const Login = ({ setIsOpen, setErrorMessage }: LoginProps) => {
           password,
         });
         const token = result.data;
-        HandleLogin(`Bearer ${token}`);
         setIsLoading(false);
-        navigate(`/${NavbarButtons.PHONES.toLowerCase()}`);
+        signIn({
+          token,
+          tokenType: "Bearer",
+          expiresIn: 3600,
+        });
+        navigate(`/${Pages.PHONES}`);
       } catch (error: any) {
         setErrorMessage(error.response?.data || error.message || error);
         setIsOpen(true);

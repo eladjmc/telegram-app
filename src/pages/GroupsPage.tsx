@@ -7,6 +7,7 @@ import "./GroupsPage.scss";
 import API from "../services/api";
 import { Pages, useGlobalContext } from "../context/LoginContext";
 import {toast, ToastContainer} from "react-toastify";
+import TablePage from "../components/shared/ui-components/TablePage";
 
 const columns: Column[] = [
   { field: "invite_link", title: "Group Invite Link" },
@@ -68,18 +69,15 @@ const Groups = () => {
 
   return (
     <section className="GroupsPage">
+      <TablePage tableData={{
+        columns,
+        data: groups,
+        onRowAdd,
+        onRowDelete,
+        loading: false,
+        title: "Groups List"
+      }} title={"Groups Connected"} />
       <ToastContainer />
-      <h1>Groups Connected</h1>
-      <div className="table-container">
-        <Table
-          title="Groups List"
-          columns={columns}
-          data={groups}
-          onRowAdd={onRowAdd}
-          onRowDelete={onRowDelete}
-          loading={false}
-        />
-      </div>
     </section>
   );
 };

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import API from "../services/api";
+import {useNavigate} from "react-router-dom";
 
 export enum Pages {
   LOGIN = "login",
@@ -39,6 +40,7 @@ const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
     return token || '';
   });
   const [currentPage, setCurrentPage] = useState<Pages>(Pages.LOGIN);
+  // const navigate = useNavigate();
 
   const handleLogout = () => {
     setIsLogged('');
@@ -50,11 +52,21 @@ const LoginProvider: React.FC<LoginProviderProps> = ({ children }) => {
   const HandleLogin = (token: string) => {
     setIsLogged(token);
     API.setToken(token);
+    localStorage.setItem("token", token);
   };
 
   const setNewPage = (page: Pages) => {
     setCurrentPage(page);
   };
+
+  useEffect(() => {
+    if (!isLogged) {
+      // navigate(`/${Pages.LOGIN}`);
+    }
+    if (isLogged && currentPage === Pages.LOGIN) {
+      // navigate(`/${Pages.PHONES}`);
+    }
+  }, [isLogged]);
 
   return (
     <LoginContext.Provider
