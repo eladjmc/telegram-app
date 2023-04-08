@@ -1,9 +1,12 @@
 import Navbar from "./components/navbar/Navbar";
-import PhonesPage from "./pages/PhonesPage";
+import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-import GroupsPage from "./pages/GroupsPage";
-import ActivatePage from "./pages/ActivatePage";
+
+const PhonesPage = lazy(() => import("./pages/PhonesPage"));
+const GroupsPage = lazy(() => import("./pages/GroupsPage"));
+const ActivatePage = lazy(() => import("./pages/ActivatePage"));
+
 
 function App() {
   const router = createBrowserRouter([

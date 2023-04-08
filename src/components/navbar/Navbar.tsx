@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {Suspense, useEffect} from "react";
 import { Outlet } from "react-router";
 import "./Navbar.scss";
 import NavButton from "./NavButton";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { NavbarButtons } from "../../constants/navbarButtons";
 import {Pages, useGlobalContext} from "../../context/LoginContext";
 import BurgerMenu from "./BurgerMenu";
+import {LinearProgress} from "@mui/material";
 
 const Navbar = () => {
   const { isLogged, handleLogout, currentPage, setNewPage } =
@@ -66,7 +67,9 @@ const Navbar = () => {
           />
         </div>
       </header>
-      <Outlet />
+      <Suspense fallback={<LinearProgress />}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
