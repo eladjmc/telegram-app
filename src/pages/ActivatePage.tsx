@@ -40,7 +40,7 @@ const ActivatePage = () => {
 
   const getMinimum = () => {
     const fixed = (DEFAULT_MINIMUM / dataAmounts.phones).toFixed(0);
-    return Number(fixed) + 5;
+    return Number(fixed) + 10;
   }
 
   useEffect(() => {

@@ -29,6 +29,7 @@ interface ModalData {
 
 const Phones = () => {
   const [phones, setPhones] = useState<PhoneData[]>([]);
+  const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState<ModalData | null>(null);
   const [tokenInput, setTokenInput] = useState("");
   const [modalError, setModalError] = useState("");
@@ -93,8 +94,10 @@ const Phones = () => {
 
   const getPhones = async () => {
     try {
+      setLoading(true);
       const result = await API.get("/phones/");
       setPhones(result.data);
+      setLoading(false);
     } catch (error) {}
   };
 
@@ -150,7 +153,7 @@ const Phones = () => {
           data: phones,
           onRowAdd,
           onRowDelete,
-          loading: false,
+          loading,
           title: "Phones List",
         }}
         title={"Phones Connected"}

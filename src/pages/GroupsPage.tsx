@@ -25,6 +25,7 @@ interface GroupData {
 
 const Groups = () => {
   const [groups, setGroups] = useState<GroupData[]>([]);
+  const [loading, setLoading] = useState(false);
   const { setNewPage } = useGlobalContext();
 
   useEffect(() => {
@@ -33,8 +34,10 @@ const Groups = () => {
 
   const getGroups = async () => {
     try {
+      setLoading(true);
       const result = await API.get("/groups/");
       setGroups(result.data);
+      setLoading(false);
     } catch (error) {}
   };
 
@@ -74,7 +77,7 @@ const Groups = () => {
         data: groups,
         onRowAdd,
         onRowDelete,
-        loading: false,
+        loading,
         title: "Groups List"
       }} title={"Groups Connected"} />
       <ToastContainer />
